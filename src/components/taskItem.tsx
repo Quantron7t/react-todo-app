@@ -7,7 +7,6 @@ class TaskItem extends React.Component<{ id:string, priority: number, desc: stri
     }
     
     getPriorityColor = (priority:number): string =>{
-        console.log("color prio",priority)
         let theColor = "";
         if(priority==1){
             theColor="#FF7F7F";

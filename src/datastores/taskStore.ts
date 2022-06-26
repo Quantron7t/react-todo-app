@@ -28,7 +28,6 @@ class TaskStore{
     setTask(description : string, priorityLevel : number) : Array<ITask> {
         let newTask : ITask= { id : uuidv4(), description : description, priorityLevel : priorityLevel};
         this.myTasks.push(newTask);
-        console.log('callback triggered');
         this.triggerCallbacks();
         return this.myTasks;
     }
@@ -45,10 +44,10 @@ class TaskStore{
     triggerCallbacks(){
         let callbacks = this.registeredCallbacks;
         if(callbacks.length > 0){
-            callbacks.forEach((element, index) => {
+            callbacks.forEach((fx, index) => {
                 console.log(`Current index: ${index}`);
-                console.log(element);
-                element();
+                //console.log(fx);
+                fx();
             });
         }else {console.log("callbacks are empty");}
     }

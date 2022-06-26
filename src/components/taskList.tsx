@@ -11,13 +11,11 @@ class TaskList extends React.Component<any, any>{
         console.log(this.taskStore.getAllTasks());
         this.state = {
             myTasks : this.taskStore.getAllTasks()
-            //chops: "ss"
         }
     }
     
     componentDidMount(){
         this.taskStore.registerCallbacks(this.myTrigger);
-        console.log("Trigger registered!");
     }
     
     myTrigger = () => {
@@ -45,7 +43,3 @@ class TaskList extends React.Component<any, any>{
 } 
 
 export default TaskList;
-
-// this.state.myTasks.map((element:any) => (
-//     <TaskItem id={element.id} desc={element.description} priority={element.priorityLevel} />
-// ))

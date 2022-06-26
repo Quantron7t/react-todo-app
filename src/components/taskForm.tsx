@@ -13,20 +13,17 @@ class TaskForm extends React.Component<{}, { defaultRangeValue : number }>{
     
     onTaskSubmit = (e:any) : boolean =>{
       e.preventDefault();
-      console.log("task submitted!");
       this.taskStore.setTask(e.target.elements.taskDescription.value,e.target.elements.taskPriorityRange.value);
       return false;
     }
     
     setRangeState=(e:any)=>{
-        console.log(e)
         this.setState({
             defaultRangeValue: e.target.value
         })
     }
 
     getPriorityColor = (priority:number): string =>{
-        console.log("color prio",priority)
         let theColor = "";
         if(priority==1){
             theColor="#FF7F7F";
