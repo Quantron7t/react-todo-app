@@ -25,14 +25,14 @@ class TaskList extends React.Component<any, any>{
     renderList =() =>{
         return (
                 this.state.myTasks.map((task:any) => (
-                <TaskItem key={task.id} id={task.id} desc={task.description} priority={task.priorityLevel}/>
+                <TaskItem key={task.id} id={task.id} description={task.description} priorityLevel={task.priorityLevel} isCompleted={task.isCompleted}/>
             ))
         );
     }
 
     renderListOrMessage = () => {
-        if(this.state.myTasks.length>0) return this.renderList();
-        else return <h1>No tasks found. Please add a task.</h1>
+        if(this.state.myTasks.length > 0) return this.renderList();
+        else return <h1 className="text-light">No tasks found. Please add a task.</h1>
     }
 
     render(){

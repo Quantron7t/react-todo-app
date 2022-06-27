@@ -1,5 +1,6 @@
 import { v4 as uuidv4 } from 'uuid';
 import { ITask} from "../types/Task";
+import _ from 'lodash';
 
 class TaskStore{
     private static instance: TaskStore;
@@ -8,8 +9,8 @@ class TaskStore{
     registeredCallbacks : Array<Function> = [];
 
     private constructor(){
-        this.myTasks = [{ id : uuidv4(), description : "buy some beer", priorityLevel : 4 },
-        { id : uuidv4(), description : "watch barcelona match on saturday", priorityLevel : 2 }];
+        this.myTasks = [{ id : uuidv4(), description : "buy some beer", priorityLevel : 4, isCompleted:false },
+        { id : uuidv4(), description : "watch barcelona match on saturday", priorityLevel : 2 , isCompleted:false}];
         //this.myTasks = [];
     }
 
@@ -25,15 +26,35 @@ class TaskStore{
         return this.myTasks;
     }
 
-    setTask(description : string, priorityLevel : number) : Array<ITask> {
-        let newTask : ITask= { id : uuidv4(), description : description, priorityLevel : priorityLevel};
+    setTask(description : string, priorityLevel : number) {
+        let newTask : ITask= { id : uuidv4(), description : description, priorityLevel : priorityLevel, isCompleted:false};
         this.myTasks.push(newTask);
         this.triggerCallbacks();
-        return this.myTasks;
     }
 
-    removeTask(id : string) : Array<ITask> {        
-        return this.myTasks;
+    removeTask(id : string) {   
+        _.remove(this.myTasks , {
+            id: id
+        });     
+        this.triggerCallbacks();
+    }
+
+    markAsComplete(id : string) {   
+        let f = _.find(this.myTasks, { id: id });
+        if(f){
+            f.isCompleted = true;
+            this.triggerCallbacks();
+        }
+        console.log('mark',this.myTasks);
+    }
+
+    markAsInComplete(id : string) {   
+        let f = _.find(this.myTasks, { id: id });
+        if(f){
+            f.isCompleted = false;
+            this.triggerCallbacks();
+        }
+        console.log('mark',this.myTasks);
     }
 
     registerCallbacks(callback : Function){
