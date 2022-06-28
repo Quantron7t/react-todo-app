@@ -6,7 +6,7 @@ class TaskStore{
     private static instance: TaskStore;
     private myTasks : Array<ITask>;    
 
-    registeredCallbacks : Array<Function> = [];
+    private registeredCallbacks : Array<Function> = [];
 
     private constructor(){
         this.myTasks = [{ id : uuidv4(), description : "buy some groceries", priorityLevel : 5, isCompleted:false },
@@ -36,8 +36,8 @@ class TaskStore{
         const theTask = _.find(this.myTasks, {id: taskId});
         if(theTask) {
             theTask.description=taskDesc;
-            theTask.priorityLevel=taskPrio
-        };
+            theTask.priorityLevel=taskPrio;
+        }
         
         this.triggerCallbacks();
     }
