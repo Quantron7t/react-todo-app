@@ -7,6 +7,8 @@ Project uses typescript for creating a react app along with es6 class components
 ## Screenshots
 
 ![Responsive](https://github.com/Quantron7t/react-todo-app/blob/main/public/screenshots/responsive_app_screenshot.png)
+![Responsive](https://github.com/Quantron7t/react-todo-app/blob/main/public/screenshots/editscreen_app_screenshot.png)
+![Responsive](https://github.com/Quantron7t/react-todo-app/blob/main/public/screenshots/addscreen_app_screenshot.png)
 
 ## Project
 
