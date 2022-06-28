@@ -5,7 +5,6 @@ import _ from 'lodash';
 class TaskStore{
     private static instance: TaskStore;
     private myTasks : Array<ITask>;    
-
     private registeredCallbacks : Array<Function> = [];
 
     private constructor(){
@@ -71,7 +70,6 @@ class TaskStore{
     }
 
     registerCallbacks(callback : Function){
-        //console.log('my registered callback',callback)
         this.registeredCallbacks.push(callback);
     }
 
