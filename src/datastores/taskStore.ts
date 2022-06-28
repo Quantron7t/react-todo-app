@@ -9,8 +9,8 @@ class TaskStore{
     registeredCallbacks : Array<Function> = [];
 
     private constructor(){
-        this.myTasks = [{ id : uuidv4(), description : "buy some beer", priorityLevel : 4, isCompleted:false },
-        { id : uuidv4(), description : "watch barcelona match on saturday", priorityLevel : 2 , isCompleted:false}];
+        this.myTasks = [{ id : uuidv4(), description : "buy some groceries", priorityLevel : 5, isCompleted:false },
+        { id : uuidv4(), description : "watch el classico on saturday", priorityLevel : 1 , isCompleted:false}];
         //this.myTasks = [];
     }
 
@@ -32,11 +32,26 @@ class TaskStore{
         this.triggerCallbacks();
     }
 
+    updateTask(taskId : string,taskDesc:string, taskPrio: number) {
+        const theTask = _.find(this.myTasks, {id: taskId});
+        if(theTask) {
+            theTask.description=taskDesc;
+            theTask.priorityLevel=taskPrio
+        };
+        
+        this.triggerCallbacks();
+    }
+
     removeTask(id : string) {   
         _.remove(this.myTasks , {
             id: id
         });     
         this.triggerCallbacks();
+    }
+
+    findTask(id:string) : ITask | undefined{
+        let f = _.find(this.myTasks,{id:id});
+        return f;
     }
 
     markAsComplete(id : string) {   
@@ -45,7 +60,6 @@ class TaskStore{
             f.isCompleted = true;
             this.triggerCallbacks();
         }
-        console.log('mark',this.myTasks);
     }
 
     markAsInComplete(id : string) {   
@@ -54,7 +68,6 @@ class TaskStore{
             f.isCompleted = false;
             this.triggerCallbacks();
         }
-        console.log('mark',this.myTasks);
     }
 
     registerCallbacks(callback : Function){

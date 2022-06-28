@@ -1,22 +1,20 @@
 import React from 'react';
 import './App.css';
-import TaskActions from './components/taskActions';
+import TaskBar from './components/taskBar';
 import TaskForm from './components/taskForm';
 import TaskList from './components/taskList';
 
 class App extends React.Component {
-  
+
   render() {
     return (
-      <>
-        <div className='container'>
-          <div className='mt-4 p-5 bg-dark text-dark rounded'>            
-            <TaskList></TaskList>
-          </div>          
-        </div>  
-        <TaskActions></TaskActions>  
+      <div className='container min-vh-100 min-vw-100 bg-dark'>
+        <div className='container pt-5 pb-5 mb-5'>
+          <TaskList></TaskList>
+        </div>
+        <TaskBar></TaskBar>
         <TaskForm></TaskForm>
-      </>
+      </div>
     );
   }
 }
